@@ -34,6 +34,43 @@ export default function createRoutes(store) {
         importModules.catch(errorLoading);
       },
     }, {
+      path: '/login',
+      name: 'login',
+      getComponent(nextState, cb) {
+        const importModules = Promise.all([
+          import('containers/LoginPage/reducer'),
+          import('containers/LoginPage/sagas'),
+          import('containers/LoginPage'),
+        ]);
+
+        const renderRoute = loadModule(cb);
+
+        importModules.then(([reducer, sagas, component]) => {
+          injectReducer('login', reducer.default);
+          injectSagas(sagas.default);
+
+          renderRoute(component);
+        });
+
+        importModules.catch(errorLoading);
+      },
+    }, {
+      name: 'ensureLoggedIn',
+      getComponent(nextState, cb) {
+        import('containers/EnsureLoggedIn')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+      childRoutes: [{
+        path: '/profile',
+        name: 'profile',
+        getComponent(nextState, cb) {
+          import('containers/ProfilePage')
+            .then(loadModule(cb))
+            .catch(errorLoading);
+        },
+      }],
+    }, {
       path: '*',
       name: 'notfound',
       getComponent(nextState, cb) {

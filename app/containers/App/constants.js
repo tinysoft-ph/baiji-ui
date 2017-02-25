@@ -10,3 +10,4 @@
  */
 
 export const DEFAULT_LOCALE = 'en';
+export const NAVIGATE_TO = 'baiji/App/NAVIGATE_TO';
