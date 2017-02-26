@@ -23,6 +23,27 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
           ]}
         />
         <FormattedMessage {...messages.header} />
+        <div>
+          <form>
+            <div>
+              <label htmlFor="inputEmail">Email</label>
+              <div>
+                <input type="email" id="inputEmail" placeholder="Email" />
+              </div>
+            </div>
+            <div>
+              <label htmlFor="inputPassword">Password</label>
+              <div>
+                <input type="password" id="inputPassword" placeholder="Password" />
+              </div>
+            </div>
+            <div>
+              <div>
+                <button type="submit">Sign in</button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }
