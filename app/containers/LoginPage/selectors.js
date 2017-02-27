@@ -3,7 +3,7 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the loginPage state domain
  */
-const selectLoginPageDomain = () => (state) => state.get('loginPage');
+const selectLoginPageDomain = () => (state) => state.get('login');
 
 /**
  * Other specific selectors
