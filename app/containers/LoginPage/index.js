@@ -19,7 +19,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
         <Helmet
           title="LoginPage"
           meta={[
-            { name: 'description', content: 'Description of LoginPage' },
+            { name: 'description', content: 'Baiji Login' },
           ]}
         />
         <FormattedMessage {...messages.header} />
