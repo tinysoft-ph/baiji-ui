@@ -69,6 +69,27 @@ export default function createRoutes(store) {
             .then(loadModule(cb))
             .catch(errorLoading);
         },
+      }, {
+        path: '/sites',
+        name: 'sites',
+        getComponent(nextState, cb) {
+          const importModules = Promise.all([
+            import('containers/SitesPage/reducer'),
+            import('containers/SitesPage/sagas'),
+            import('containers/SitesPage'),
+          ]);
+
+          const renderRoute = loadModule(cb);
+
+          importModules.then(([reducer, sagas, component]) => {
+            injectReducer('sitesPage', reducer.default);
+            injectSagas(sagas.default);
+
+            renderRoute(component);
+          });
+
+          importModules.catch(errorLoading);
+        },
       }],
     }, {
       path: '*',
