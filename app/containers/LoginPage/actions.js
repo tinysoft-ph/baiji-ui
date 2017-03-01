@@ -5,11 +5,11 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  SUBMIT_FORM,
 } from './constants';
 
-export function defaultAction() {
+export function submitLoginForm() {
   return {
-    type: DEFAULT_ACTION,
+    type: SUBMIT_FORM,
   };
 }
