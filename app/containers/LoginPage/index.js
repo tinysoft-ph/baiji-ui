@@ -14,9 +14,16 @@ import messages from './messages';
 import { submitLoginForm } from './actions';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  render() {
+  handleSubmit() {
     const { submitForm } = this.props;
 
+    submitForm({
+      username: this.ref.emailNode,
+      password: this.ref.passwordNode,
+    });
+  }
+
+  render() {
     return (
       <div>
         <Helmet
@@ -31,19 +38,29 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             <div>
               <label htmlFor="inputEmail">Email</label>
               <div>
-                <input type="email" id="inputEmail" placeholder="Email" />
+                <input
+                  type="email"
+                  id="inputEmail"
+                  placeholder="Email"
+                  ref={(node) => { this.emailNode = node; }}
+                />
               </div>
             </div>
             <div>
               <label htmlFor="inputPassword">Password</label>
               <div>
-                <input type="password" id="inputPassword" placeholder="Password" />
+                <input
+                  type="password"
+                  id="inputPassword"
+                  placeholder="Password"
+                  ref={(node) => { this.passwordNode = node; }}
+                />
               </div>
             </div>
             <div>
               <div>
                 <button
-                  onSubmit={submitForm}
+                  onSubmit={() => this.handleSubmit}
                   type="submit"
                 >Sign in</button>
               </div>
@@ -65,7 +82,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    submitForm: () => { dispatch(submitLoginForm()); },
+    submitForm: ({ username, password }) => { dispatch(submitLoginForm({ username, password })); },
   };
 }
 
