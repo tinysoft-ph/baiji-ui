@@ -1,7 +1,7 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
-import App from '../index';
+import { App } from '../index';
 
 describe('<App />', () => {
   it('should render its children', () => {
@@ -12,5 +12,14 @@ describe('<App />', () => {
       </App>
     );
     expect(renderedComponent.contains(children)).toBe(true);
+  });
+
+  it('should call get token on refresh', () => {
+    const tokenRefresh = jest.fn();
+    mount((
+      <App loadUserFromToken={tokenRefresh} />
+    ));
+
+    expect(tokenRefresh).toHaveBeenCalled();
   });
 });

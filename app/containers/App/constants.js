@@ -11,3 +11,4 @@
 
 export const DEFAULT_LOCALE = 'en';
 export const NAVIGATE_TO = 'baiji/App/NAVIGATE_TO';
+export const ME_FROM_TOKEN = 'baiji/App/ME_FROM_TOKEN';
