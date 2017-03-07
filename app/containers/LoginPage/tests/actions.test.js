@@ -1,10 +1,12 @@
 
 import {
   changeUsername,
+  changePassword,
   submitLoginForm,
 } from '../actions';
 import {
   CHANGE_USERNAME,
+  CHANGE_PASSWORD,
   SUBMIT_FORM,
 } from '../constants';
 
@@ -34,6 +36,18 @@ describe('LoginPage actions', () => {
       };
 
       expect(changeUsername(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('changePassword', () => {
+    it('should return the correct type and the passed password', () => {
+      const fixture = 'pass';
+      const expectedResult = {
+        type: CHANGE_PASSWORD,
+        password: fixture,
+      };
+
+      expect(changePassword(fixture)).toEqual(expectedResult);
     });
   });
 });

@@ -22,7 +22,7 @@ function loginPageReducer(state = initialState, action) {
     case CHANGE_USERNAME:
       return state.setIn(['credentials', 'username'], action.username);
     case CHANGE_PASSWORD:
-      return state;
+      return state.setIn(['credentials', 'password'], action.password);
     default:
       return state;
   }
