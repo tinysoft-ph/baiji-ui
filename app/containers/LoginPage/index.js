@@ -11,9 +11,12 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import makeSelectLoginPage from './selectors';
 import messages from './messages';
+import { submitLoginForm } from './actions';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   render() {
+    const { submitForm } = this.props;
+
     return (
       <div>
         <Helmet
@@ -39,7 +42,10 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             </div>
             <div>
               <div>
-                <button type="submit">Sign in</button>
+                <button
+                  onSubmit={submitForm}
+                  type="submit"
+                >Sign in</button>
               </div>
             </div>
           </form>
@@ -50,16 +56,16 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
 }
 
 LoginPage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  submitForm: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   LoginPage: makeSelectLoginPage(),
 });
 
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    submitForm: () => { dispatch(submitLoginForm()); },
   };
 }
 
