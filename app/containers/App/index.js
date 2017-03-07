@@ -19,6 +19,10 @@ import { navigateTo, meFromToken } from './actions';
 export class App extends React.Component {
 
   componentDidMount() {
+    const token = sessionStorage.getItem('jwtToken');
+    if (!token || token === '') {
+      return;
+    }
     this.props.loadUserFromToken();
   }
 
@@ -54,12 +58,7 @@ App.propTypes = {
 function mapDispatchToProps(dispatch) {
   return {
     dispatchNavigateTo: (url) => dispatch(navigateTo(url)),
-    loadUserFromToken: () => {
-      const token = sessionStorage.getItem('jwtToken');
-      if (!token || token === '') {
-        return;
-      }
-
+    loadUserFromToken: (token) => {
       dispatch(meFromToken(token));
     },
   };

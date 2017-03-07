@@ -16,10 +16,24 @@ describe('<App />', () => {
 
   it('should call get token on refresh', () => {
     const tokenRefresh = jest.fn();
+    global.sessionStorage = jest.fn();
+    global.sessionStorage.getItem = jest.fn();
+    global.sessionStorage.getItem.mockReturnValue('tokenString');
     mount((
       <App loadUserFromToken={tokenRefresh} />
     ));
 
     expect(tokenRefresh).toHaveBeenCalled();
+  });
+
+  it('should call token when token is in storage', () => {
+    const tokenRefresh = jest.fn();
+    global.sessionStorage = jest.fn();
+    global.sessionStorage.getItem = jest.fn();
+    global.sessionStorage.getItem.mockReturnValue(null);
+    mount((
+      <App loadUserFromToken={tokenRefresh} />
+    ));
+    expect(tokenRefresh).toHaveBeenCalledTimes(0);
   });
 });
