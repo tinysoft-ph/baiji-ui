@@ -9,7 +9,6 @@ const initialState = fromJS({
 });
 
 function appReducer(state = initialState, action) {
-  console.log('State: ', state, action);
   switch (action.type) {
     case SET_LOGGED_IN_STATUS:
       return state.set('isLoggedIn', action.status);
