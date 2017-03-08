@@ -18,4 +18,11 @@ describe('appReducer', () => {
     const expectedResult = state;
     expect(appReducer(undefined, {})).toEqual(expectedResult);
   });
+
+  it('should set the login status', () => {
+    const expectedResult = fromJS({
+      isLoggedIn: true,
+    });
+    expect(appReducer(state, setLoggedInStatus(true))).toEqual(expectedResult);
+  });
 });
