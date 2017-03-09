@@ -4,7 +4,7 @@
 
 /* eslint-disable redux-saga/yield-effects */
 // import { take, call, put, select } from 'redux-saga/effects';
-import { getUsername } from '../sagas';
+import { getUsername, submitLoginForm } from '../sagas';
 
 // const generator = defaultSaga();
 
@@ -17,4 +17,8 @@ describe('getUsername Saga', () => {
 
     expect(putDescriptor).toEqual(put(usernameLoaded(username)));
   });
+});
+
+describe('submitLoginForm Saga', () => {
+  it('');
 });
