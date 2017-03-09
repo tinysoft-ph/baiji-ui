@@ -2,11 +2,15 @@
 import {
   ME_FROM_TOKEN,
   NAVIGATE_TO,
+  ME_REQUEST_FAILED,
+  ME_REQUEST_SUCCESS,
 } from '../constants';
 
 import {
   meFromToken,
   navigateTo,
+  meRequestFailed,
+  meRequestSuccess,
 } from '../actions';
 
 describe('App Actions', () => {
@@ -31,6 +35,30 @@ describe('App Actions', () => {
       };
 
       expect(navigateTo(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('meRequestFailed', () => {
+    it('should return the correct type and the message', () => {
+      const fixture = 'message';
+      const expectedResult = {
+        type: ME_REQUEST_FAILED,
+        message: fixture,
+      };
+
+      expect(meRequestFailed(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('meRequestFailed', () => {
+    it('should return the correct type and the message', () => {
+      const fixture = { username: 'username' };
+      const expectedResult = {
+        type: ME_REQUEST_SUCCESS,
+        user: fixture,
+      };
+
+      expect(meRequestSuccess(fixture)).toEqual(expectedResult);
     });
   });
 });
