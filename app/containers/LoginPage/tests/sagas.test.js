@@ -20,5 +20,11 @@ describe('getUsername Saga', () => {
 });
 
 describe('submitLoginForm Saga', () => {
-  it('');
+  it('should dispatch the loginSuccess action it request returns successfully', () => {
+    expect(true).toEqual(false);
+  });
+
+  it('should dispatch the loginFailed action it request returns unsuccessfully', () => {
+    expect(true).toEqual(false);
+  });
 });
