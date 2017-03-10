@@ -4,6 +4,7 @@ import appReducer from '../reducer';
 
 import {
   setLoggedInStatus,
+  meRequestSuccess,
 } from '../actions';
 
 describe('appReducer', () => {
@@ -11,6 +12,7 @@ describe('appReducer', () => {
   beforeEach(() => {
     state = fromJS({
       isLoggedIn: false,
+      me: null,
     });
   });
 
@@ -22,7 +24,14 @@ describe('appReducer', () => {
   it('should set the login status', () => {
     const expectedResult = fromJS({
       isLoggedIn: true,
+      me: null,
     });
     expect(appReducer(state, setLoggedInStatus(true))).toEqual(expectedResult);
+  });
+
+  it('should set the me value on success', () => {
+    const fixture = { username: 'julius' };
+    const expectedResult = state.set('me', fixture).set('isLoggedIn', true);
+    expect(appReducer(state, meRequestSuccess(fixture))).toEqual(expectedResult);
   });
 });
