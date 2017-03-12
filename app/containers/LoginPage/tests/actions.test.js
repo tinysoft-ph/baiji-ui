@@ -56,10 +56,10 @@ describe('LoginPage actions', () => {
   });
 
   describe('loginSuccess', () => {
-    it('should return the correct type and the passed password', () => {
+    it('should return the correct type and user details', () => {
       const fixture = {
-        username: 'test',
-        password: 'pass',
+        firstName: 'firstName',
+        lastName: 'lastName',
       };
       const expectedResult = {
         type: LOGIN_SUCCESS,
@@ -70,6 +70,18 @@ describe('LoginPage actions', () => {
       };
 
       expect(loginSuccess(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('loginFailed', () => {
+    it('should return the correct type and error value', () => {
+      const fixture = 'Error!';
+      const expectedResult = {
+        type: LOGIN_FAILED,
+        error: 'Error!',
+      };
+
+      expect(loginFailed(fixture)).toEqual(expectedResult);
     });
   });
 });
