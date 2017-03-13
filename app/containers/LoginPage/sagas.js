@@ -1,7 +1,16 @@
 import { take, takeLatest, call, put, select } from 'redux-saga/effects';
 
 import request from 'utils/request';
-import { changeUsername, changeUsernameError, loginSuccess, loginFailed } from './actions';
+import {
+  changeUsername,
+  changeUsernameError,
+  loginSuccess,
+  loginFailed,
+} from './actions';
+import {
+  makeSelectUsername,
+  makeSelectPassword,
+} from './selectors';
 
 // Individual exports for testing
 export function* getUsername() {
