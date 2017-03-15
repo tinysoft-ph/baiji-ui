@@ -9,12 +9,12 @@ import {
   CHANGE_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
-  SUBMIT_FORM,
+  SUBMIT_LOGIN_FORM,
 } from './constants';
 
 export function submitLoginForm({ username, password }) {
   return {
-    type: SUBMIT_FORM,
+    type: SUBMIT_LOGIN_FORM,
     credentials: {
       username,
       password,

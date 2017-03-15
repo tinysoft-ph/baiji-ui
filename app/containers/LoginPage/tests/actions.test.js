@@ -11,16 +11,16 @@ import {
   CHANGE_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
-  SUBMIT_FORM,
+  SUBMIT_LOGIN_FORM,
 } from '../constants';
 
 describe('LoginPage actions', () => {
   describe('Submit Form Action', () => {
-    it('has a type of SUBMIT_FORM and credentials object', () => {
+    it('has a type of SUBMIT_LOGIN_FORM and credentials object', () => {
       const username = 'test';
       const password = 'pass';
       const expected = {
-        type: SUBMIT_FORM,
+        type: SUBMIT_LOGIN_FORM,
         credentials: {
           username,
           password,

@@ -38,7 +38,7 @@ export function* submitLoginForm() {
 }
 
 export function* submitLoginTriggered() {
-  yield takeLatest(SUBMIT_FORM, submitLoginForm);
+  yield takeLatest(SUBMIT_LOGIN_FORM, submitLoginForm);
 }
 
 // All sagas to be loaded
