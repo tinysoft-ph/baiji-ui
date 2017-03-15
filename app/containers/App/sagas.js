@@ -9,9 +9,9 @@ import {
   meRequestSuccess,
 } from './actions';
 
-function* getMeFromToken(action) {
+export function* getMeFromToken(action) {
   // TODO: placeholder for request
-  const request = {};
+  const request = { fetch: () => true };
   try {
     const me = yield call(request.fetch, action.username);
     yield put(meRequestSuccess(me));
