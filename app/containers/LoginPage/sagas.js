@@ -8,6 +8,9 @@ import {
   loginFailed,
 } from './actions';
 import {
+  SUBMIT_LOGIN_FORM,
+} from './constants';
+import {
   makeSelectUsername,
   makeSelectPassword,
 } from './selectors';

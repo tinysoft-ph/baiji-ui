@@ -1,6 +1,7 @@
 
 import {
   changeUsername,
+  changeUsernameError,
   changePassword,
   loginSuccess,
   loginFailed,
@@ -8,6 +9,7 @@ import {
 } from '../actions';
 import {
   CHANGE_USERNAME,
+  CHANGE_USERNAME_ERROR,
   CHANGE_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
@@ -40,6 +42,18 @@ describe('LoginPage actions', () => {
       };
 
       expect(changeUsername(fixture)).toEqual(expectedResult);
+    });
+  });
+
+  describe('changeUsernameError', () => {
+    it('should return the error type and the error message', () => {
+      const fixture = 'Error!';
+      const expectedResult = {
+        type: CHANGE_USERNAME_ERROR,
+        error: fixture,
+      };
+
+      expect(changeUsernameError(fixture)).toEqual(expectedResult);
     });
   });
 
