@@ -49,4 +49,16 @@ describe('<App />', () => {
 
     expect(setLoggedInStatus).toHaveBeenCalledWith(false);
   });
+
+  it('should dispatch load user action on token found', () => {
+    const fixture = 'token';
+    const setLoggedInStatus = jest.fn();
+    const tokenRefresh = jest.fn();
+    global.sessionStorage.getItem.mockReturnValue(fixture);
+    mount((
+      <App dispatchSetLoggedInStatus={setLoggedInStatus} loadUserFromToken={tokenRefresh} />
+    ));
+    expect(setLoggedInStatus).toHaveBeenCalledTimes(0);
+    expect(tokenRefresh).toHaveBeenCalledWith(fixture);
+  });
 });

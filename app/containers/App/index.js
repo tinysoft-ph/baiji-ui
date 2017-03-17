@@ -24,7 +24,7 @@ export class App extends React.Component {
       this.props.dispatchSetLoggedInStatus(false);
       return;
     }
-    this.props.loadUserFromToken();
+    this.props.loadUserFromToken(token);
   }
 
   componentDidUpdate(prevProps) {
