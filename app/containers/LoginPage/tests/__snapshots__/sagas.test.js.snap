@@ -3,22 +3,28 @@ Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
     "args": Array [
-      "http://localhost",
+      "/login",
       Object {
-        "password": Object {
-          "@@redux-saga/IO": true,
-          "SELECT": Object {
-            "args": Array [],
-            "selector": [Function],
+        "body": Object {
+          "password": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
+          },
+          "username": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
           },
         },
-        "username": Object {
-          "@@redux-saga/IO": true,
-          "SELECT": Object {
-            "args": Array [],
-            "selector": [Function],
-          },
+        "headers": Object {
+          "Content-Type": "application/json",
         },
+        "method": "POST",
       },
     ],
     "context": null,
@@ -32,22 +38,28 @@ Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
     "args": Array [
-      "http://localhost",
+      "/login",
       Object {
-        "password": Object {
-          "@@redux-saga/IO": true,
-          "SELECT": Object {
-            "args": Array [],
-            "selector": [Function],
+        "body": Object {
+          "password": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
+          },
+          "username": Object {
+            "@@redux-saga/IO": true,
+            "SELECT": Object {
+              "args": Array [],
+              "selector": [Function],
+            },
           },
         },
-        "username": Object {
-          "@@redux-saga/IO": true,
-          "SELECT": Object {
-            "args": Array [],
-            "selector": [Function],
-          },
+        "headers": Object {
+          "Content-Type": "application/json",
         },
+        "method": "POST",
       },
     ],
     "context": null,

@@ -30,10 +30,19 @@ export function* getUsername() {
 export function* submitLoginForm() {
   const username = select(makeSelectUsername()); // get from selector
   const password = select(makeSelectPassword()); // get from selector
-  const url = 'http://localhost';
+  const url = '/login';
 
   try {
-    const loginData = yield call(request, url, { username, password });
+    const loginData = yield call(request, url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: {
+        username,
+        password,
+      },
+    });
     yield put(loginSuccess(loginData));
   } catch (err) {
     yield put(loginFailed(err));
