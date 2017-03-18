@@ -9,23 +9,33 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import makeSelectLoginPage from './selectors';
+import
+makeSelectLoginPage,
+{ makeSelectUsername,
+  makeSelectPassword } from './selectors';
 import messages from './messages';
 import { submitLoginForm } from './actions';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   handleSubmit(e) {
-    const { submitForm } = this.props;
+    const { submitForm, username, password } = this.props;
 
-    e.preventDefault();
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
 
     submitForm({
-      username: this.emailNode.value,
-      password: this.passwordNode.value,
+      username,
+      password,
     });
   }
 
   render() {
+    const {
+      username,
+      password,
+    } = this.props;
+
     return (
       <div>
         <Helmet
@@ -46,7 +56,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
                   type="email"
                   id="inputEmail"
                   placeholder="Email"
-                  ref={(node) => { this.emailNode = node; }}
+                  value={username}
                 />
               </div>
             </div>
@@ -57,7 +67,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
                   type="password"
                   id="inputPassword"
                   placeholder="Password"
-                  ref={(node) => { this.passwordNode = node; }}
+                  value={password}
                 />
               </div>
             </div>
@@ -77,10 +87,14 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
 
 LoginPage.propTypes = {
   submitForm: PropTypes.func.isRequired,
+  username: PropTypes.string,
+  password: PropTypes.string,
 };
 
 const mapStateToProps = createStructuredSelector({
   LoginPage: makeSelectLoginPage(),
+  username: makeSelectUsername(),
+  password: makeSelectPassword(),
 });
 
 export function mapDispatchToProps(dispatch) {

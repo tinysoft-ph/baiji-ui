@@ -31,6 +31,26 @@ describe('<LoginPage />', () => {
     expect(renderedComponent.find('button[type="submit"]')).toHaveLength(1);
   });
 
+  describe('simulate events', () => {
+    it('should call submitForm on form submit', () => {
+      const submitFormDispatch = jest.fn();
+      const wrapper = shallow(
+        <LoginPage
+          submitForm={submitFormDispatch}
+          username="test"
+          password="pass"
+        />
+      );
+      const fixture = {
+        username: 'test',
+        password: 'pass',
+      };
+
+      wrapper.find('form').simulate('submit');
+      expect(submitFormDispatch).toHaveBeenCalledWith(fixture);
+    });
+  });
+
   describe('on form submit', () => {
     let dispatch = null;
     let result = null;
