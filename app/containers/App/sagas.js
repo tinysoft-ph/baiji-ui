@@ -1,5 +1,7 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
+import request from 'utils/request';
+
 import {
   ME_FROM_TOKEN,
 } from './constants';
@@ -11,9 +13,10 @@ import {
 
 export function* getMeFromToken(action) {
   // TODO: placeholder for request
-  const request = { fetch: () => true };
+  const url = `/me?token=${action.token}`;
+
   try {
-    const me = yield call(request.fetch, action.username);
+    const me = yield call(request, url);
     yield put(meRequestSuccess(me));
   } catch (err) {
     yield put(meRequestFailed(err.message));

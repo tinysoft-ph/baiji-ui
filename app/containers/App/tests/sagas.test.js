@@ -13,7 +13,9 @@ describe('Request Me From Token Saga', () => {
   let getMeFromTokenGenerator;
 
   beforeEach(() => {
-    getMeFromTokenGenerator = getMeFromToken('exampletoken');
+    getMeFromTokenGenerator = getMeFromToken({
+      token: 'exampletoken',
+    });
     const testCall = getMeFromTokenGenerator.next().value;
 
     expect(testCall).toMatchSnapshot();

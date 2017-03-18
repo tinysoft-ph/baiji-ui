@@ -37,7 +37,8 @@ function checkStatus(response) {
  * @return {object}           The response data
  */
 export default function request(url, options) {
-  return fetch(url, options)
+  const fullUrl = `${SERVICE_URL}${url}`; // eslint-disable-line no-undef
+  return fetch(fullUrl, options)
     .then(checkStatus)
     .then(parseJSON);
 }
