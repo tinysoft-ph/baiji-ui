@@ -7,6 +7,7 @@ describe('<App />', () => {
   beforeEach(() => {
     global.sessionStorage = jest.fn();
     global.sessionStorage.getItem = jest.fn();
+    global.sessionStorage.removeItem = jest.fn();
   });
 
   it('should render its children', () => {
@@ -60,5 +61,37 @@ describe('<App />', () => {
     ));
     expect(setLoggedInStatus).toHaveBeenCalledTimes(0);
     expect(tokenRefresh).toHaveBeenCalledWith(fixture);
+  });
+
+  it('should navigateTo url when loggingIn', () => {
+    const navigateTo = jest.fn();
+    const redirectUrl = '/redirectUrl';
+    const renderedComponent = shallow(
+      <App
+        isLoggedIn={false}
+        dispatchNavigateTo={navigateTo}
+        redirectUrl={redirectUrl}
+        dispatchSetLoggedInStatus={jest.fn()}
+      />,
+      { lifecycleExperimental: true }
+    );
+
+    renderedComponent.setProps({ isLoggedIn: true });
+
+    expect(navigateTo).toHaveBeenCalledWith(redirectUrl);
+  });
+
+  it('should remove jwtToken when loggingOut', () => {
+    const renderedComponent = shallow(
+      <App
+        isLoggedIn
+        dispatchSetLoggedInStatus={jest.fn()}
+      />,
+      { lifecycleExperimental: true }
+    );
+
+    renderedComponent.setProps({ isLoggedIn: false });
+
+    expect(global.sessionStorage.removeItem).toHaveBeenCalledWith('jwtToken');
   });
 });
