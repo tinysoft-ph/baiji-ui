@@ -6,6 +6,7 @@
 
 import {
   CHANGE_USERNAME,
+  CHANGE_USERNAME_ERROR,
   CHANGE_PASSWORD,
   LOGIN_SUCCESS,
   LOGIN_FAILED,
@@ -26,6 +27,13 @@ export function changeUsername(username) {
   return {
     type: CHANGE_USERNAME,
     username,
+  };
+}
+
+export function changeUsernameError(err) {
+  return {
+    type: CHANGE_USERNAME_ERROR,
+    error: err,
   };
 }
 

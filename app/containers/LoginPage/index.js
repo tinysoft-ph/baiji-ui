@@ -14,12 +14,14 @@ import messages from './messages';
 import { submitLoginForm } from './actions';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  handleSubmit() {
+  handleSubmit(e) {
     const { submitForm } = this.props;
 
+    e.preventDefault();
+
     submitForm({
-      username: this.ref.emailNode,
-      password: this.ref.passwordNode,
+      username: this.emailNode.value,
+      password: this.passwordNode.value,
     });
   }
 
@@ -34,7 +36,9 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
         />
         <FormattedMessage {...messages.header} />
         <div>
-          <form>
+          <form
+            onSubmit={(e) => this.handleSubmit(e)}
+          >
             <div>
               <label htmlFor="inputEmail">Email</label>
               <div>
@@ -60,7 +64,6 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             <div>
               <div>
                 <button
-                  onSubmit={() => this.handleSubmit}
                   type="submit"
                 >Sign in</button>
               </div>
