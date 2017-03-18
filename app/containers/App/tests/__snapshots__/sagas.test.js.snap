@@ -5,7 +5,7 @@ Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
     "args": Array [
-      undefined,
+      "/me?token=exampletoken",
     ],
     "context": null,
     "fn": [Function],
@@ -18,7 +18,7 @@ Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
     "args": Array [
-      undefined,
+      "/me?token=exampletoken",
     ],
     "context": null,
     "fn": [Function],

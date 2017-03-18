@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`submitLoginForm Saga should dispatch the loginFailed action it request returns unsuccessfully 1`] = `
 Object {
   "@@redux-saga/IO": true,
