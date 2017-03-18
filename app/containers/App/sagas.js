@@ -17,8 +17,12 @@ export function* getMeFromToken(action) {
 
   try {
     const me = yield call(request, url);
+    // save new token to session storage
+    sessionStorage.setItem('jwtToken', me.token);
     yield put(meRequestSuccess(me));
   } catch (err) {
+    // delete token from session storage
+    sessionStorage.removeItem('jwtToken');
     yield put(meRequestFailed(err.message));
   }
 }

@@ -36,6 +36,7 @@ export class App extends React.Component {
       this.props.dispatchNavigateTo(redirectUrl);
     } else if (isLoggingOut) {
       // do any kind of cleanup or post-logout redirection here
+      sessionStorage.removeItem('jwtToken');
     }
   }
 

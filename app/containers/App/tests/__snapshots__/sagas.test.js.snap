@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Request Me From Token Saga should dispatch meRequestFailed on failure 1`] = `
+exports[`Request Me From Token Saga OnFail should dispatch meRequestFailed on failure 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
@@ -13,7 +13,33 @@ Object {
 }
 `;
 
-exports[`Request Me From Token Saga should dispatch meRequestSuccess on success 1`] = `
+exports[`Request Me From Token Saga OnFail should remove jwtToken 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/me?token=exampletoken",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`Request Me From Token Saga OnSuccess should dispatch meRequestSuccess on success 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/me?token=exampletoken",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`Request Me From Token Saga OnSuccess should set jwtToken in sessionStorage 1`] = `
 Object {
   "@@redux-saga/IO": true,
   "CALL": Object {
