@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
+import Input from 'components/Input';
+
 import { submitLoginForm } from '../actions';
 import { LoginPage, mapDispatchToProps } from '../index';
 import messages from '../messages';
@@ -11,7 +13,11 @@ describe('<LoginPage />', () => {
 
   beforeAll(() => {
     renderedComponent = shallow(
-      <LoginPage submitForm={() => {}} />
+      <LoginPage
+        username="test"
+        password="pass"
+        submitForm={() => {}}
+      />
     );
   });
 
@@ -20,11 +26,27 @@ describe('<LoginPage />', () => {
   });
 
   it('Expect to display input for email', () => {
-    expect(renderedComponent.find('input#inputEmail[type="email"]')).toHaveLength(1);
+    const type = 'email';
+    expect(renderedComponent.contains(
+      <Input
+        type={type}
+        id="inputEmail"
+        placeholder="Email"
+        value="test"
+      />
+    )).toEqual(true);
   });
 
   it('Expect to display input for password', () => {
-    expect(renderedComponent.find('input#inputPassword[type="password"]')).toHaveLength(1);
+    const type = 'password';
+    expect(renderedComponent.contains(
+      <Input
+        type={type}
+        id="inputPassword"
+        placeholder="Password"
+        value="pass"
+      />
+    )).toEqual(true);
   });
 
   it('Expect to display submit button', () => {

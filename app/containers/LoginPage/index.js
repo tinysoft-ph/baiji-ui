@@ -9,6 +9,9 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
+
+import Input from 'components/Input';
+
 import
 makeSelectLoginPage,
 { makeSelectUsername,
@@ -52,7 +55,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             <div>
               <label htmlFor="inputEmail">Email</label>
               <div>
-                <input
+                <Input
                   type="email"
                   id="inputEmail"
                   placeholder="Email"
@@ -63,7 +66,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             <div>
               <label htmlFor="inputPassword">Password</label>
               <div>
-                <input
+                <Input
                   type="password"
                   id="inputPassword"
                   placeholder="Password"

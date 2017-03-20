@@ -3,17 +3,26 @@ import { shallow } from 'enzyme';
 
 import Input from '../index';
 
-describe('<Input />', () => {
-  it('should render input as children', () => {
-    const children = (
-      <input />
-    );
-    const renderedComponent = shallow(
-      <Input>
-        {children}
-      </Input>
-    );
+const type = 'email';
+const renderComponent = (props = {}) => shallow(
+  <Input type={type} {...props} />
+);
 
-    expect(renderedComponent.contains(children)).toEqual(true);
+describe('<Input />', () => {
+  it('should have a type attribute', () => {
+    const renderedComponent = renderComponent();
+    expect(renderedComponent.prop('type')).toEqual(type);
+  });
+
+  it('should adopt id attribute', () => {
+    const id = 'id';
+    const renderedComponent = renderComponent({ id });
+    expect(renderedComponent.prop('id')).toEqual(id);
+  });
+
+  it('should adopt placeholder attribute', () => {
+    const placeholder = 'placeholder';
+    const renderedComponent = renderComponent({ placeholder });
+    expect(renderedComponent.prop('placeholder')).toEqual(placeholder);
   });
 });
