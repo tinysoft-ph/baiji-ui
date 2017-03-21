@@ -3,6 +3,7 @@ import { put } from 'redux-saga/effects';
 import {
   meRequestSuccess,
   meRequestFailed,
+  setLoggedInStatus,
 } from '../actions';
 
 import {
@@ -44,6 +45,16 @@ describe('Request Me From Token Saga', () => {
       getMeFromTokenGenerator.next(fixture);
       expect(global.sessionStorage.setItem).toHaveBeenCalledWith('jwtToken', fixture.token);
     });
+
+    it('should dispatch setLoggedInStatus on success', () => {
+      const fixture = {
+        username: 'testusername',
+      };
+
+      getMeFromTokenGenerator.next(fixture);
+      const callDescriptor = getMeFromTokenGenerator.next().value;
+      expect(callDescriptor).toEqual(put(setLoggedInStatus(true)));
+    });
   });
 
   describe('OnFail', () => {
@@ -63,6 +74,16 @@ describe('Request Me From Token Saga', () => {
 
       getMeFromTokenGenerator.throw(fixture);
       expect(global.sessionStorage.removeItem).toHaveBeenCalledWith('jwtToken');
+    });
+
+    it('should dispatch setLoggedInStatus on fail', () => {
+      const fixture = {
+        username: 'testusername',
+      };
+
+      getMeFromTokenGenerator.throw(fixture);
+      const callDescriptor = getMeFromTokenGenerator.next().value;
+      expect(callDescriptor).toEqual(put(setLoggedInStatus(false)));
     });
   });
 });
