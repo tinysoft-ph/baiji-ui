@@ -4,31 +4,16 @@
 *
 */
 
-import React, { PropTypes } from 'react';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-
-function Input({
-  id,
-  placeholder,
-  type,
-  value,
-}) {
-  return (
-    <input
-      type={type}
-      id={id}
-      placeholder={placeholder}
-      value={value}
-    />
-  );
-}
-
-Input.propTypes = {
-  id: PropTypes.string,
-  placeholder: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  value: PropTypes.string,
-};
+const Input = styled.input`
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: .25rem;
+  color: #464a4c;
+  line-height: 1.25;
+  padding: 8px 12px;
+`;
 
 export default Input;

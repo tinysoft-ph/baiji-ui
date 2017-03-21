@@ -17,7 +17,11 @@ makeSelectLoginPage,
 { makeSelectUsername,
   makeSelectPassword } from './selectors';
 import messages from './messages';
-import { submitLoginForm } from './actions';
+import {
+  changeUsername,
+  changePassword,
+  submitLoginForm,
+} from './actions';
 
 export class LoginPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   handleSubmit(e) {
@@ -37,6 +41,8 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
     const {
       username,
       password,
+      onChangeUsername,
+      onChangePassword,
     } = this.props;
 
     return (
@@ -60,6 +66,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
                   id="inputEmail"
                   placeholder="Email"
                   value={username}
+                  onChange={onChangeUsername}
                 />
               </div>
             </div>
@@ -71,6 +78,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
                   id="inputPassword"
                   placeholder="Password"
                   value={password}
+                  onChange={onChangePassword}
                 />
               </div>
             </div>
@@ -92,6 +100,7 @@ LoginPage.propTypes = {
   submitForm: PropTypes.func.isRequired,
   username: PropTypes.string,
   password: PropTypes.string,
+  onChangeUsername: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -102,6 +111,8 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
+    onChangeUsername: (evt) => { dispatch(changeUsername(evt.target.value)); },
+    onChangePassword: (evt) => { dispatch(changePassword(evt.target.value)); },
     submitForm: ({ username, password }) => { dispatch(submitLoginForm({ username, password })); },
   };
 }
