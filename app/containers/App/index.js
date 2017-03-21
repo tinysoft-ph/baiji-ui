@@ -21,7 +21,7 @@ export class App extends React.Component {
   componentDidMount() {
     const token = sessionStorage.getItem('jwtToken');
     if (!token || token === '') {
-      this.props.dispatchSetLoggedInStatus(false);
+      this.props.dispatchNotLoggedInStatus();
       return;
     }
     this.props.loadUserFromToken(token);
@@ -55,7 +55,7 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool,
   dispatchNavigateTo: PropTypes.func,
   loadUserFromToken: PropTypes.func,
-  dispatchSetLoggedInStatus: PropTypes.func,
+  dispatchNotLoggedInStatus: PropTypes.func,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -64,7 +64,7 @@ function mapDispatchToProps(dispatch) {
     loadUserFromToken: (token) => {
       dispatch(meFromToken(token));
     },
-    dispatchSetLoggedInStatus: (status) => dispatch(setLoggedInStatus(status)),
+    dispatchNotLoggedInStatus: () => dispatch(setLoggedInStatus(false)),
   };
 }
 
