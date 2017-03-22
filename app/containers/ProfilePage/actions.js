@@ -5,11 +5,11 @@
  */
 
 import {
-  DEFAULT_ACTION,
+  LOAD_PROFILE,
 } from './constants';
 
-export function defaultAction() {
+export function loadProfile() {
   return {
-    type: DEFAULT_ACTION,
+    type: LOAD_PROFILE,
   };
 }

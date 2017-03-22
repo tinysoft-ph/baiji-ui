@@ -4,4 +4,4 @@
  *
  */
 
-export const DEFAULT_ACTION = 'app/ProfilePage/DEFAULT_ACTION';
+export const LOAD_PROFILE = 'baiji/ProfilePage/LOAD_PROFILE';

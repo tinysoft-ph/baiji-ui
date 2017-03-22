@@ -1,18 +1,18 @@
 
 import {
-  defaultAction,
+  loadProfile,
 } from '../actions';
 import {
-  DEFAULT_ACTION,
+  LOAD_PROFILE,
 } from '../constants';
 
 describe('ProfilePage actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('LOAD_PROFILE Action', () => {
+    it('has a type of LOAD_PROFILE', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: LOAD_PROFILE,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(loadProfile()()).toEqual(expected);
     });
   });
 });
