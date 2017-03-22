@@ -6,8 +6,8 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  header: {
+  title: {
     id: 'app.components.Header.header',
-    title: 'Baiji',
+    defaultMessage: 'Baiji',
   },
 });
