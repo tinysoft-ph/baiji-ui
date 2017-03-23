@@ -6,15 +6,17 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  LOAD_PROFILE,
 } from './constants';
 
-const initialState = fromJS({});
+const initialState = fromJS({
+  isLoading: true,
+});
 
 function profilePageReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
-      return state;
+    case LOAD_PROFILE:
+      return state.set('isLoading', true);
     default:
       return state;
   }
