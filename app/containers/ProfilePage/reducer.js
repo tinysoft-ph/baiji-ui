@@ -8,7 +8,7 @@ import { fromJS } from 'immutable';
 import {
   LOAD_PROFILE,
   PROFILE_LOADED,
-  PROFILE_LOADED_FAILED,
+  PROFILE_LOAD_FAILED,
 } from './constants';
 
 const initialState = fromJS({
@@ -21,7 +21,7 @@ function profilePageReducer(state = initialState, action) {
       return state.set('isLoading', true);
     case PROFILE_LOADED:
       return state.set('isLoading', false);
-    case PROFILE_LOADED_FAILED:
+    case PROFILE_LOAD_FAILED:
       return state.set('isLoading', false);
     default:
       return state;
