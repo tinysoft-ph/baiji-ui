@@ -7,6 +7,7 @@ describe('<App />', () => {
   beforeEach(() => {
     global.sessionStorage = jest.fn();
     global.sessionStorage.getItem = jest.fn();
+    global.sessionStorage.removeItem = jest.fn();
   });
 
   it('should render its children', () => {
@@ -20,34 +21,34 @@ describe('<App />', () => {
   });
 
   it('should call get token on refresh', () => {
-    const tokenRefresh = jest.fn();
+    const loadUserFromToken = jest.fn();
     global.sessionStorage.getItem.mockReturnValue('tokenString');
     mount((
-      <App loadUserFromToken={tokenRefresh} />
+      <App loadUserFromToken={loadUserFromToken} />
     ));
 
-    expect(tokenRefresh).toHaveBeenCalled();
+    expect(loadUserFromToken).toHaveBeenCalled();
   });
 
   it('should not call remote token load on empty session', () => {
-    const tokenRefresh = jest.fn();
+    const loadUserFromToken = jest.fn();
     const setLoggedInStatus = jest.fn();
     global.sessionStorage.getItem.mockReturnValue(null);
     mount((
-      <App loadUserFromToken={tokenRefresh} dispatchSetLoggedInStatus={setLoggedInStatus} />
+      <App loadUserFromToken={loadUserFromToken} dispatchNotLoggedInStatus={setLoggedInStatus} />
     ));
-    expect(tokenRefresh).toHaveBeenCalledTimes(0);
+    expect(loadUserFromToken).toHaveBeenCalledTimes(0);
   });
 
-  it('should dispatch change loggedIn status', () => {
+  it('should dispatch notLoggedIn status', () => {
     const setLoggedInStatus = jest.fn();
-    const tokenRefresh = jest.fn();
+    const loadUserFromToken = jest.fn();
     global.sessionStorage.getItem.mockReturnValue(null);
     mount((
-      <App dispatchSetLoggedInStatus={setLoggedInStatus} loadUserFromToken={tokenRefresh} />
+      <App dispatchNotLoggedInStatus={setLoggedInStatus} loadUserFromToken={loadUserFromToken} />
     ));
 
-    expect(setLoggedInStatus).toHaveBeenCalledWith(false);
+    expect(setLoggedInStatus).toHaveBeenCalled();
   });
 
   it('should dispatch load user action on token found', () => {
@@ -56,9 +57,41 @@ describe('<App />', () => {
     const tokenRefresh = jest.fn();
     global.sessionStorage.getItem.mockReturnValue(fixture);
     mount((
-      <App dispatchSetLoggedInStatus={setLoggedInStatus} loadUserFromToken={tokenRefresh} />
+      <App dispatchNotLoggedInStatus={setLoggedInStatus} loadUserFromToken={tokenRefresh} />
     ));
     expect(setLoggedInStatus).toHaveBeenCalledTimes(0);
     expect(tokenRefresh).toHaveBeenCalledWith(fixture);
+  });
+
+  it('should navigateTo url when loggingIn', () => {
+    const navigateTo = jest.fn();
+    const redirectUrl = '/redirectUrl';
+    const renderedComponent = shallow(
+      <App
+        isLoggedIn={false}
+        dispatchNavigateTo={navigateTo}
+        redirectUrl={redirectUrl}
+        dispatchNotLoggedInStatus={jest.fn()}
+      />,
+      { lifecycleExperimental: true }
+    );
+
+    renderedComponent.setProps({ isLoggedIn: true });
+
+    expect(navigateTo).toHaveBeenCalledWith(redirectUrl);
+  });
+
+  it('should remove jwtToken when loggingOut', () => {
+    const renderedComponent = shallow(
+      <App
+        isLoggedIn
+        dispatchNotLoggedInStatus={jest.fn()}
+      />,
+      { lifecycleExperimental: true }
+    );
+
+    renderedComponent.setProps({ isLoggedIn: false });
+
+    expect(global.sessionStorage.removeItem).toHaveBeenCalledWith('jwtToken');
   });
 });

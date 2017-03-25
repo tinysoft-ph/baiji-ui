@@ -9,17 +9,23 @@ import {
 import {
   meRequestFailed,
   meRequestSuccess,
+  setLoggedInStatus,
 } from './actions';
 
 export function* getMeFromToken(action) {
-  // TODO: placeholder for request
   const url = `/me?token=${action.token}`;
 
   try {
     const me = yield call(request, url);
+    // save new token to session storage
+    sessionStorage.setItem('jwtToken', me.token);
     yield put(meRequestSuccess(me));
+    yield put(setLoggedInStatus(true));
   } catch (err) {
+    // delete token from session storage
+    sessionStorage.removeItem('jwtToken');
     yield put(meRequestFailed(err.message));
+    yield put(setLoggedInStatus(false));
   }
 }
 
