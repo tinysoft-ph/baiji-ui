@@ -12,6 +12,11 @@ import messages from './messages';
 
 const Wrapper = styled.footer`
   background-color: green;
+  bottom: 0;
+  height: 60px;
+  left: 0;
+  position: fixed;
+  width: 100%;
 `;
 
 function Footer() {
