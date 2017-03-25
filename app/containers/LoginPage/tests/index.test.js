@@ -2,16 +2,26 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
-import { submitLoginForm } from '../actions';
+import Input from 'components/Input';
+
+import { changeUsername, changePassword, submitLoginForm } from '../actions';
 import { LoginPage, mapDispatchToProps } from '../index';
 import messages from '../messages';
 
 describe('<LoginPage />', () => {
   let renderedComponent = null;
 
+  const onChange = jest.fn();
+
   beforeAll(() => {
     renderedComponent = shallow(
-      <LoginPage submitForm={() => {}} />
+      <LoginPage
+        username="test"
+        password="pass"
+        submitForm={() => {}}
+        onChangeUsername={onChange}
+        onChangePassword={onChange}
+      />
     );
   });
 
@@ -20,15 +30,67 @@ describe('<LoginPage />', () => {
   });
 
   it('Expect to display input for email', () => {
-    expect(renderedComponent.find('input#inputEmail[type="email"]')).toHaveLength(1);
+    const type = 'email';
+    expect(renderedComponent.contains(
+      <Input
+        type={type}
+        id="inputEmail"
+        placeholder="Email"
+        value="test"
+        onChange={onChange}
+      />
+    )).toEqual(true);
   });
 
   it('Expect to display input for password', () => {
-    expect(renderedComponent.find('input#inputPassword[type="password"]')).toHaveLength(1);
+    const type = 'password';
+    expect(renderedComponent.contains(
+      <Input
+        type={type}
+        id="inputPassword"
+        placeholder="Password"
+        value="pass"
+        onChange={onChange}
+      />
+    )).toEqual(true);
   });
 
   it('Expect to display submit button', () => {
     expect(renderedComponent.find('button[type="submit"]')).toHaveLength(1);
+  });
+
+  describe('mapDispatchToProps', () => {
+    describe('onChangeUsername', () => {
+      it('should be injected', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        expect(result.onChangeUsername).toBeDefined();
+      });
+
+      it('should dispatch changeUsername when called', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        const username = 'test';
+        result.onChangeUsername({ target: { value: username } });
+        expect(dispatch).toHaveBeenCalledWith(changeUsername(username));
+      });
+    });
+
+    describe('onChangePassword', () => {
+      it('should be injected', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        expect(result.onChangePassword).toBeDefined();
+      });
+
+      it('should dispatch changePassword when called', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        const password = 'pass';
+        result.onChangePassword({ target: { value: password } });
+        expect(dispatch).toHaveBeenCalledWith(changePassword(password));
+      });
+    });
   });
 
   describe('simulate events', () => {
