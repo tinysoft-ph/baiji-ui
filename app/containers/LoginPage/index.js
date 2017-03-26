@@ -10,6 +10,8 @@ import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 import Input from 'components/Input';
 
 import
@@ -53,6 +55,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             { name: 'description', content: 'Baiji Login' },
           ]}
         />
+        <Header />
         <FormattedMessage {...messages.header} />
         <div>
           <form
@@ -91,6 +94,7 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
             </div>
           </form>
         </div>
+        <Footer />
       </div>
     );
   }

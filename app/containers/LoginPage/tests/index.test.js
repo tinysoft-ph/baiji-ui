@@ -2,6 +2,8 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
+import Footer from 'components/Footer';
+import Header from 'components/Header';
 import Input from 'components/Input';
 
 import { changeUsername, changePassword, submitLoginForm } from '../actions';
@@ -53,6 +55,14 @@ describe('<LoginPage />', () => {
         onChange={onChange}
       />
     )).toEqual(true);
+  });
+
+  it('should render the <Header />', () => {
+    expect(renderedComponent.contains(<Header />)).toEqual(true);
+  });
+
+  it('should render the <Footer />', () => {
+    expect(renderedComponent.contains(<Footer />)).toEqual(true);
   });
 
   it('Expect to display submit button', () => {
