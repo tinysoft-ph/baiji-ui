@@ -12,6 +12,8 @@ import { createStructuredSelector } from 'reselect';
 
 import Footer from 'components/Footer';
 import Header from 'components/Header';
+import Button from 'components/Button';
+import Form from 'components/Form';
 import Input from 'components/Input';
 
 import
@@ -57,43 +59,46 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
         />
         <Header />
         <FormattedMessage {...messages.header} />
-        <div>
-          <form
-            onSubmit={(e) => this.handleSubmit(e)}
-          >
-            <div>
-              <label htmlFor="inputEmail">Email</label>
+        <Form>
+          <FormattedMessage {...messages.header} />
+          <div>
+            <form
+              onSubmit={(e) => this.handleSubmit(e)}
+            >
               <div>
-                <Input
-                  type="email"
-                  id="inputEmail"
-                  placeholder="Email"
-                  value={username}
-                  onChange={onChangeUsername}
-                />
+                <label htmlFor="inputEmail">Email</label>
+                <div>
+                  <Input
+                    type="email"
+                    id="inputEmail"
+                    placeholder="Email"
+                    value={username}
+                    onChange={onChangeUsername}
+                  />
+                </div>
               </div>
-            </div>
-            <div>
-              <label htmlFor="inputPassword">Password</label>
               <div>
-                <Input
-                  type="password"
-                  id="inputPassword"
-                  placeholder="Password"
-                  value={password}
-                  onChange={onChangePassword}
-                />
+                <label htmlFor="inputPassword">Password</label>
+                <div>
+                  <Input
+                    type="password"
+                    id="inputPassword"
+                    placeholder="Password"
+                    value={password}
+                    onChange={onChangePassword}
+                  />
+                </div>
               </div>
-            </div>
-            <div>
               <div>
-                <button
-                  type="submit"
-                >Sign in</button>
+                <div>
+                  <Button
+                    type="submit"
+                  >Sign in</Button>
+                </div>
               </div>
-            </div>
-          </form>
-        </div>
+            </form>
+          </div>
+        </Form>
         <Footer />
       </div>
     );

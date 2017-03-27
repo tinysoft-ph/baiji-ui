@@ -13,7 +13,9 @@ const Input = styled.input`
   border-radius: .25rem;
   color: #464a4c;
   line-height: 1.25;
+  margin: 10px 0;
   padding: 8px 12px;
+  width: 100%;
 `;
 
 export default Input;
