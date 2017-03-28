@@ -6,19 +6,20 @@
 
 import {
   LOAD_PROFILE,
-  PROFILE_LOADED,
+  PROFILE_LOAD_SUCCESS,
   PROFILE_LOAD_FAILED,
 } from './constants';
 
-export function loadProfile() {
+export function loadProfile(id) {
   return {
     type: LOAD_PROFILE,
+    id,
   };
 }
 
 export function loadProfileSuccess(user) {
   return {
-    type: PROFILE_LOADED,
+    type: PROFILE_LOAD_SUCCESS,
     user,
   };
 }

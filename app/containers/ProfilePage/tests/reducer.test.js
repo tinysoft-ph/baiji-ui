@@ -4,7 +4,7 @@ import profilePageReducer from '../reducer';
 
 import {
   LOAD_PROFILE,
-  PROFILE_LOADED,
+  PROFILE_LOAD_SUCCESS,
 } from '../constants';
 
 describe('profilePageReducer', () => {
@@ -29,7 +29,7 @@ describe('profilePageReducer', () => {
       const fixture = {
         isLoading: false,
       };
-      expect(profilePageReducer(undefined, { type: PROFILE_LOADED }))
+      expect(profilePageReducer(undefined, { type: PROFILE_LOAD_SUCCESS }))
         .toEqual(fromJS(fixture));
     });
   });

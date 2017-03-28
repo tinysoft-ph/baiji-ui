@@ -1,11 +1,33 @@
-// import { take, call, put, select } from 'redux-saga/effects';
+import { takeLatest, call, put } from 'redux-saga/effects';
+
+import request from 'utils/request';
+
+import {
+  LOAD_PROFILE,
+} from './constants';
+
+import {
+  loadProfileSuccess,
+  loadProfileFailed,
+} from './actions';
+
+export function* loadProfileSaga(action) {
+  const url = `/profile?id=${action.token}`;
+
+  try {
+    const profile = yield call(request, url);
+    yield put(loadProfileSuccess(profile));
+  } catch (err) {
+    yield put(loadProfileFailed(err.message));
+  }
+}
 
 // Individual exports for testing
-export function* defaultSaga() {
-  // See example in containers/HomePage/sagas.js
+export function* getProfile() {
+  yield takeLatest(LOAD_PROFILE, loadProfileSaga);
 }
 
 // All sagas to be loaded
 export default [
-  defaultSaga,
+  getProfile,
 ];

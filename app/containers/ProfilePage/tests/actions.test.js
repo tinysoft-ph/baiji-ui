@@ -6,17 +6,19 @@ import {
 } from '../actions';
 import {
   LOAD_PROFILE,
-  PROFILE_LOADED,
+  PROFILE_LOAD_SUCCESS,
   PROFILE_LOAD_FAILED,
 } from '../constants';
 
 describe('ProfilePage actions', () => {
   describe('LOAD_PROFILE Action', () => {
     it('has a type of LOAD_PROFILE', () => {
+      const fixture = 'thisid';
       const expected = {
         type: LOAD_PROFILE,
+        id: fixture,
       };
-      expect(loadProfile()).toEqual(expected);
+      expect(loadProfile(fixture)).toEqual(expected);
     });
   });
 
@@ -26,7 +28,7 @@ describe('ProfilePage actions', () => {
         name: 'username',
       };
       const expected = {
-        type: PROFILE_LOADED,
+        type: PROFILE_LOAD_SUCCESS,
         user: fixture,
       };
 
