@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`loadProfile Saga OnFailed should dispatch loadProfile failed on failure 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/profile?id=something",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;
+
+exports[`loadProfile Saga OnSuccess should dispatch loadProfile action on success 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/profile?id=something",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

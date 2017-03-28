@@ -12,7 +12,7 @@ import {
 } from './actions';
 
 export function* loadProfileSaga(action) {
-  const url = `/profile?id=${action.token}`;
+  const url = `/profile?id=${action.id}`;
 
   try {
     const profile = yield call(request, url);
