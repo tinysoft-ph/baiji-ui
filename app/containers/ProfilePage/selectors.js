@@ -3,11 +3,15 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the profilePage state domain
  */
-const selectProfilePageDomain = () => (state) => state.get('profilePage');
+const selectProfilePageDomain = () => (state) => state.get('profile');
 
 /**
  * Other specific selectors
  */
+const makeSelectProfile = () => createSelector(
+   selectProfilePageDomain(),
+   (profilePageState) => profilePageState.get('profile')
+ );
 
 
 /**
@@ -16,7 +20,7 @@ const selectProfilePageDomain = () => (state) => state.get('profilePage');
 
 const makeSelectProfilePage = () => createSelector(
   selectProfilePageDomain(),
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectProfilePage;
