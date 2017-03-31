@@ -14,10 +14,10 @@ import messages from './messages';
 
 export class ProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
   onSave() {
-    this.props.dispatchSaveProfile(this.props.profile);
+    this.props.onSaveProfile(this.props.profile);
   }
   onLoad() {
-    this.props.dispatchLoadProfile(this.props.profile);
+    this.props.onLoadProfile(this.props.profile);
   }
   render() {
     return (
@@ -29,16 +29,15 @@ export class ProfilePage extends React.Component { // eslint-disable-line react/
           ]}
         />
         <FormattedMessage {...messages.header} />
-        {this.props.profile.username}
       </div>
     );
   }
 }
 
 ProfilePage.propTypes = {
-  profile: PropTypes.obj,
-  dispatchLoadProfile: PropTypes.func.isRequired,
-  dispatchSaveProfile: PropTypes.func.isRequired,
+  profile: PropTypes.object,
+  onLoadProfile: PropTypes.func.isRequired,
+  onSaveProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -47,8 +46,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatchLoadProfile: () => dispatch(),
-    dispatchSaveProfile: () => dispatch(),
+    onLoadProfile: () => dispatch(),
+    onSaveProfile: () => dispatch(),
   };
 }
 

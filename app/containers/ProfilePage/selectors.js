@@ -26,4 +26,5 @@ const makeSelectProfilePage = () => createSelector(
 export default makeSelectProfilePage;
 export {
   selectProfilePageDomain,
+  makeSelectProfile,
 };
