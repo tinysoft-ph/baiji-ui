@@ -1,4 +1,4 @@
-const material = `
+const material = `{
   body {
   	font-family: 'Roboto';
   	font-size: 13px;
