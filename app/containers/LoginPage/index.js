@@ -60,7 +60,6 @@ export class LoginPage extends React.Component { // eslint-disable-line react/pr
         <Header />
         <FormattedMessage {...messages.header} />
         <Form>
-          <FormattedMessage {...messages.header} />
           <div>
             <form
               onSubmit={(e) => this.handleSubmit(e)}
@@ -110,6 +109,7 @@ LoginPage.propTypes = {
   username: PropTypes.string,
   password: PropTypes.string,
   onChangeUsername: PropTypes.func,
+  onChangePassword: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
