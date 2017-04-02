@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { FormattedMessage } from 'react-intl';
 
+import Button from 'components/Button';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import Input from 'components/Input';
@@ -65,8 +66,12 @@ describe('<LoginPage />', () => {
     expect(renderedComponent.contains(<Footer />)).toEqual(true);
   });
 
-  it('Expect to display submit button', () => {
-    expect(renderedComponent.find('button[type="submit"]')).toHaveLength(1);
+  it('should render the <Button /> with "Sign in" text', () => {
+    expect(renderedComponent.contains(
+      <Button type="submit">
+        Sign in
+      </Button>
+    )).toEqual(true);
   });
 
   describe('mapDispatchToProps', () => {
