@@ -4,7 +4,9 @@ import { shallow } from 'enzyme';
 import Form from '../index';
 
 const renderComponent = (props = {}) => shallow(
-  <Form {...props} />
+  <Form {...props}>
+    <button type="submit">Submit</button>
+  </Form>
 );
 
 describe('<Form />', () => {
@@ -19,7 +21,7 @@ describe('<Form />', () => {
       const renderedComponent = renderComponent({
         onSubmit,
       });
-      renderedComponent.find('form').simulate('click');
+      renderedComponent.find('form').simulate('submit');
       expect(onSubmit).toHaveBeenCalled();
     });
   });
