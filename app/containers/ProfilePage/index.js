@@ -9,10 +9,16 @@ import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
-import makeSelectProfilePage from './selectors';
+import { makeSelectProfile } from './selectors';
 import messages from './messages';
 
 export class ProfilePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  onSave() {
+    this.props.onSaveProfile(this.props.profile);
+  }
+  onLoad() {
+    this.props.onLoadProfile(this.props.profile);
+  }
   render() {
     return (
       <div>
@@ -29,16 +35,19 @@ export class ProfilePage extends React.Component { // eslint-disable-line react/
 }
 
 ProfilePage.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  profile: PropTypes.object,
+  onLoadProfile: PropTypes.func.isRequired,
+  onSaveProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
-  ProfilePage: makeSelectProfilePage(),
+  profile: makeSelectProfile(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onLoadProfile: () => dispatch(),
+    onSaveProfile: () => dispatch(),
   };
 }
 

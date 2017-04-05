@@ -1,10 +1,19 @@
-// import { fromJS } from 'immutable';
-// import { makeSelectProfilePageDomain } from '../selectors';
+import { fromJS } from 'immutable';
+import makeSelectProfilePage
+from '../selectors';
 
-// const selector = makeSelectProfilePageDomain();
+const selector = makeSelectProfilePage();
 
-describe('makeSelectProfilePageDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+
+describe('makeSelectProfilePage', () => {
+  it('should select profile page state', () => {
+    const profileState = fromJS({
+      profile: {},
+    });
+    const mockedState = fromJS({
+      profile: profileState,
+    });
+
+    expect(selector(mockedState)).toEqual(profileState);
   });
 });
