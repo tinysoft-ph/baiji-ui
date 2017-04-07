@@ -6,14 +6,14 @@
 
 import { fromJS } from 'immutable';
 import {
-  DEFAULT_ACTION,
+  LOAD_SITE,
 } from './constants';
 
 const initialState = fromJS({});
 
 function sitesViewReducer(state = initialState, action) {
   switch (action.type) {
-    case DEFAULT_ACTION:
+    case LOAD_SITE:
       return state;
     default:
       return state;
