@@ -20,7 +20,7 @@ const makeSelectSites = () => createSelector(
 
 const makeSelectSitesPage = () => createSelector(
   selectSitesPageDomain(),
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectSitesPage;
