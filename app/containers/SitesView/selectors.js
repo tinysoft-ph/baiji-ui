@@ -9,6 +9,10 @@ const selectSitesViewDomain = () => (state) => state.get('sitesView');
  * Other specific selectors
  */
 
+const makeSelectSite = () => createSelector(
+  selectSitesViewDomain(),
+  (sitesViewState) => sitesViewState.get('sitesView')
+);
 
 /**
  * Default selector used by SitesView
@@ -22,4 +26,5 @@ const makeSelectSitesView = () => createSelector(
 export default makeSelectSitesView;
 export {
   selectSitesViewDomain,
+  makeSelectSite,
 };
