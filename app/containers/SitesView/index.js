@@ -13,6 +13,10 @@ import makeSelectSitesView from './selectors';
 import messages from './messages';
 
 export class SitesView extends React.Component { // eslint-disable-line react/prefer-stateless-function
+  onLoad() {
+    this.props.onLoadSiteView(this.props.sitesView);
+  }
+
   render() {
     return (
       <div>
@@ -29,7 +33,10 @@ export class SitesView extends React.Component { // eslint-disable-line react/pr
 }
 
 SitesView.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  sitesView: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+  onLoadSiteView: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -38,7 +45,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    dispatch,
+    onLoadSiteView: () => dispatch(),
   };
 }
 
