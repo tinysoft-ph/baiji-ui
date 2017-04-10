@@ -20,7 +20,7 @@ describe('loadSites Saga', () => {
 
   beforeEach(() => {
     loadSitesGenerator = loadSitesSaga();
-    // TODO: Add test
+
     const testCall = loadSitesGenerator.next().value;
     expect(testCall).toMatchSnapshot();
   });
