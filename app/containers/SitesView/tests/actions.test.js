@@ -1,18 +1,18 @@
 
 import {
-  defaultAction,
+  loadSite,
 } from '../actions';
 import {
-  DEFAULT_ACTION,
+  LOAD_SITE,
 } from '../constants';
 
 describe('SitesView actions', () => {
-  describe('Default Action', () => {
-    it('has a type of DEFAULT_ACTION', () => {
+  describe('LOAD_SITE Action', () => {
+    it('has a type of LOAD_SITE', () => {
       const expected = {
-        type: DEFAULT_ACTION,
+        type: LOAD_SITE,
       };
-      expect(defaultAction()).toEqual(expected);
+      expect(loadSite()).toEqual(expected);
     });
   });
 });
