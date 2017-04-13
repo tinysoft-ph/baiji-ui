@@ -1,10 +1,17 @@
-// import { fromJS } from 'immutable';
-// import { makeSelectSitesViewDomain } from '../selectors';
+import { fromJS } from 'immutable';
+import makeSelectSitesView from '../selectors';
 
-// const selector = makeSelectSitesViewDomain();
+const selector = makeSelectSitesView();
 
 describe('makeSelectSitesViewDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('should select sitesView state', () => {
+    const sitesViewState = fromJS({
+      sitesView: {},
+    });
+    const mockedState = fromJS({
+      sitesView: sitesViewState,
+    });
+
+    expect(selector(mockedState)).toEqual(sitesViewState);
   });
 });
