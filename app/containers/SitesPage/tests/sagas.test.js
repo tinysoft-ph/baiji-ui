@@ -4,12 +4,46 @@
 
 /* eslint-disable redux-saga/yield-effects */
 // import { take, call, put, select } from 'redux-saga/effects';
-// import { defaultSaga } from '../sagas';
+import { put } from 'redux-saga/effects';
 
-// const generator = defaultSaga();
+import {
+  loadSitesSaga,
+} from '../sagas';
 
-describe('defaultSaga Saga', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+import {
+  loadSitesSuccess,
+  loadSitesFailed,
+} from '../actions';
+
+describe('loadSites Saga', () => {
+  let loadSitesGenerator;
+
+  beforeEach(() => {
+    loadSitesGenerator = loadSitesSaga();
+
+    const testCall = loadSitesGenerator.next().value;
+    expect(testCall).toMatchSnapshot();
+  });
+
+  describe('OnSuccess', () => {
+    it('should dispatch success action on success', () => {
+      const fixture = [{
+        id: 1,
+      }];
+
+      const callDescriptor = loadSitesGenerator.next(fixture).value;
+      expect(callDescriptor).toEqual(put(loadSitesSuccess(fixture)));
+    });
+  });
+
+  describe('OnFailed', () => {
+    it('should dispatch failed on failure', () => {
+      const fixture = {
+        message: 'Error message',
+      };
+
+      const callDescriptor = loadSitesGenerator.throw(fixture).value;
+      expect(callDescriptor).toEqual(put(loadSitesFailed(fixture.message)));
+    });
   });
 });

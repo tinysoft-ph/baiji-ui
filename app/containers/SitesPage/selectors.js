@@ -3,11 +3,15 @@ import { createSelector } from 'reselect';
 /**
  * Direct selector to the sitesPage state domain
  */
-const selectSitesPageDomain = () => (state) => state.get('sitesPage');
+const selectSitesPageDomain = () => (state) => state.get('sites');
 
 /**
  * Other specific selectors
  */
+const makeSelectSites = () => createSelector(
+   selectSitesPageDomain(),
+   (sitePageState) => sitePageState.get('sites')
+ );
 
 
 /**
@@ -16,10 +20,11 @@ const selectSitesPageDomain = () => (state) => state.get('sitesPage');
 
 const makeSelectSitesPage = () => createSelector(
   selectSitesPageDomain(),
-  (substate) => substate.toJS()
+  (substate) => substate
 );
 
 export default makeSelectSitesPage;
 export {
   selectSitesPageDomain,
+  makeSelectSites,
 };
