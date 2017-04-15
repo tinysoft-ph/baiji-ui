@@ -3,13 +3,31 @@
  */
 
 /* eslint-disable redux-saga/yield-effects */
-// import { take, call, put, select } from 'redux-saga/effects';
-// import { defaultSaga } from '../sagas';
+import { take, call, put, select } from 'redux-saga/effects';
+import { loadSiteView } from '../sagas';
 
-// const generator = defaultSaga();
+import {
+  loadSiteViewSuccess,
+} from '../actions';
 
-describe('defaultSaga Saga', () => {
+describe('loadSiteView Saga', () => {
+  let loadSiteViewGenerator;
+
+  beforeEach(() => {
+    loadSiteViewGenerator = loadSiteView({
+      id: '1234-abcd',
+    });
+    const testCall = loadSiteViewGenerator.next().value;
+
+    expect(testCall).toMatchSnapshot();
+  });
+
   it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+    const fixture = {
+      siteName: 'test-site',
+    };
+
+    const callDescriptor = loadSiteViewGenerator.next(fixture).value;
+    expect(callDescriptor).toEqual(put(loadSiteViewSuccess(fixture)));
   });
 });
