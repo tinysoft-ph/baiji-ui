@@ -1,0 +1,12 @@
+exports[`loadSiteView Saga Expect to have unit tests specified 1`] = `
+Object {
+  "@@redux-saga/IO": true,
+  "CALL": Object {
+    "args": Array [
+      "/site?id=[object Object]",
+    ],
+    "context": null,
+    "fn": [Function],
+  },
+}
+`;

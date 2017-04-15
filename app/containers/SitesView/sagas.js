@@ -6,12 +6,16 @@ import {
   LOAD_SITE,
 } from './constants';
 
+import {
+  loadSiteViewSuccess,
+} from './actions';
+
 export function* loadSiteView(id) {
   const url = `/site?id=${id}`;
 
   try {
     const view = yield call(request, url);
-    yield put(view);
+    yield put(loadSiteViewSuccess(view));
   } catch (err) {
     yield put(err.message);
   }
@@ -19,7 +23,7 @@ export function* loadSiteView(id) {
 
 // Individual exports for testing
 export function* getSiteView() {
-  yield takeLatest(LOAD_SITE, loadSiteView());
+  yield takeLatest(LOAD_SITE, loadSiteView);
 }
 
 // All sagas to be loaded
