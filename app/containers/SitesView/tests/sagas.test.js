@@ -22,7 +22,7 @@ describe('loadSiteView Saga', () => {
     expect(testCall).toMatchSnapshot();
   });
 
-  it('Expect to have unit tests specified', () => {
+  it('should dispatch loadSiteViewSuccess action', () => {
     const fixture = {
       siteName: 'test-site',
     };
